@@ -1,0 +1,35 @@
+{
+    "python.pythonPath": "/opt/venv/bin/python",
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "/opt/venv/bin/flake8",
+    "python.linting.flake8Args": [
+        "--max-line-length=80",
+        "--ignore=W503",
+    ],
+    "python.linting.pylintEnabled": false,
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.pycodestylePath": "/opt/venv/bin/pycodestyle",
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "autopep8",
+    "python.formatting.autopep8Path": "/opt/venv/bin/autopep8",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true,
+        "**/.cpuprofile": true,
+    },
+    "editor.rulers": [79],
+    "editor.defaultFormatter": "ms-python.python",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "editor.formatOnPaste": true
+    }
+}

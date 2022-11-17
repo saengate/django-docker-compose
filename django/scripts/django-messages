@@ -1,0 +1,11 @@
+#!/bin/bash
+#-*- ENCODING: UTF-8 -*-
+
+main() {
+    source /opt/venv/bin/activate
+    cd /webapps/cforemoto
+    django-admin makemessages -a
+    django-admin compilemessages
+}
+
+main

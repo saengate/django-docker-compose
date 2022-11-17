@@ -1,0 +1,125 @@
+#!/bin/bash
+#-*- ENCODING: UTF-8 -*-
+
+# Num  Colour    #define         R G B
+# 0    black     COLOR_BLACK     0,0,0
+# 1    red       COLOR_RED       1,0,0
+# 2    green     COLOR_GREEN     0,1,0
+# 3    yellow    COLOR_YELLOW    1,1,0
+# 4    blue      COLOR_BLUE      0,0,1
+# 5    magenta   COLOR_MAGENTA   1,0,1
+# 6    cyan      COLOR_CYAN      0,1,1
+# 7    white     COLOR_WHITE     1,1,1
+
+NC=$(tput sgr0)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+CYAN=$(tput setaf 4)
+
+restartsupervisor() {
+    echo "${GREEN}Reiniciando supervisor${NC}"
+    runsupervisor
+}
+
+restartnginx() {
+    echo "${GREEN}Reiniciando nginx${NC}"
+    service nginx restart
+}
+
+restartall() {
+    echo "${GREEN}Reiniciando nginx y supervisor${NC}"
+    restartsupervisor
+    restartnginx
+}
+
+createadmin() {
+    echo "${GREEN}Creando administrador django${NC}"
+    echo "${RED}Requiere que la base de datos este arriba${NC}"
+    django-migrate
+    source /opt/venv/bin/activate
+    airflow initdb
+    cd /webapps/cforemoto
+    echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | ./manage.py shell
+}
+
+translate() {
+    echo "${GREEN}Creando traducciones de mensajes${NC}"
+    echo "${RED}Debe agregar las traducciones manualmente${NC}"
+    django-messages
+}
+
+logdjango() {
+    echo "${GREEN}Logs del projecto${NC}"
+    tail -100f /var/log/cforemoto/cforemoto.log
+}
+
+logsupervisor() {
+    echo "${GREEN}Logs de supervisor${NC}"
+    tail -100f /var/log/supervisor/supervisord.log
+}
+
+help() {
+    echo "${CYAN}
+    Ayuda: Comandos de ayuda para facilitar el uso del proyecto dentro del contenedor:
+
+    -h  | * | --help   muestran los comandos disponibles
+
+    -rs | --restart-supervisor      Reinicia supervisor y las configuraciones de los programas
+    -rn | --restart-nginx           Reinicia Nginx
+    -ra | --restart-all             Reiniciar supervisor las configuraciones de los programas y Nginx
+    -ca | --create-admin            Crea el usuario administrador por defecto de la aplicación
+    -t  | --translate               Prepara las traducciones en django
+    -lp | --log-django              Muestra los logs del projecto y uwsgi
+    -ls | --log-supervisor          Muestra los logs de supervisor
+
+    source venv                     Acceder al entorno virtual del proyecto
+    ${NC}
+    "
+}
+
+if [ "$1" == "" ]; then
+    help
+    exit 1
+fi
+
+while [ "$1" != "" ]; do
+    case $1 in
+    -rs | --restart-supervisor)
+        restartsupervisor
+        exit
+        ;;
+    -rn | --restart-nginx)
+        restartnginx
+        exit
+        ;;
+    -ra | --restart-all)
+        restartall
+        exit
+        ;;
+    -ca | --create-admin)
+        createadmin
+        exit
+        ;;
+    -t | --translate)
+        translate
+        exit
+        ;;
+    -lp | --log-django)
+        logdjango
+        exit
+        ;;
+    -ls | --log-supervisor)
+        logsupervisor
+        exit
+        ;;
+    -h | --help)
+        help
+        exit
+        ;;
+    *)
+        help
+        exit 1
+        ;;
+    esac
+    shift
+done

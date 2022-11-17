@@ -1,0 +1,57 @@
+version: "3.7"
+
+volumes:
+  postgres:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/database/data
+
+services:
+  redis:
+    image: redis:latest
+    container_name: play_redis
+
+  db:
+    image: postgres:11
+    container_name: play_database
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: userdb
+      POSTGRES_DB: play_django
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+    security_opt:
+      - seccomp:unconfined
+
+  backend:
+    image: backend
+    build:
+      context: ./django
+      dockerfile: Dockerfile
+    container_name: play_backend
+    tty: true
+    depends_on:
+      - redis
+      - db
+    volumes:
+      - ./django:/webapps/playdjango
+    ports:
+      - "7010:7010" # ./manage.py runserver
+      - "7001:7001" # ./manage.py shell_plus --notebook
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - LC_CTYPE=en_US.UTF-8
+      - LANG=en_US.UTF-8
+      - DJANGO_ALLOW_ASYNC_UNSAFE=true
+    command: >
+      bash -c "
+      poetry lock --no-update &&
+      source /opt/venv/bin/activate &&
+      bash
+      "

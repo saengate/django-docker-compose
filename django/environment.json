@@ -1,0 +1,32 @@
+{
+    "local": {
+        "django_settings": "config.settings.local",
+        "environment_variables": {
+            "ENV": "local",
+            "DJANGO_SETTINGS_MODULE": "config.settings.local",
+            "ADMIN_USERNAME": "admin",
+            "ADMIN_PASSWORD": "admin"
+        }
+    },
+    "ci": {
+        "django_settings": "config.settings.ci",
+        "environment_variables": {
+            "ENV": "ci",
+            "DJANGO_SETTINGS_MODULE": "config.settings.ci"
+        }
+    },
+    "qa": {
+        "django_settings": "config.settings.qa",
+        "environment_variables": {
+            "ENV": "qa",
+            "DJANGO_SETTINGS_MODULE": "config.settings.qa"
+        }
+    },
+    "prod": {
+        "django_settings": "config.settings.prod",
+        "environment_variables": {
+            "ENV": "prod",
+            "DJANGO_SETTINGS_MODULE": "config.settings.prod"
+        }
+    }
+}

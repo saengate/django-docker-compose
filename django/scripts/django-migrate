@@ -1,0 +1,12 @@
+#!/bin/bash
+#-*- ENCODING: UTF-8 -*-
+
+main() {
+    source /opt/venv/bin/activate
+    cd /webapps/cforemoto
+    ./manage.py makemigrations --noinput
+    ./manage.py migrate --noinput --run-syncdb
+    ./manage.py collectstatic --noinput
+}
+
+main

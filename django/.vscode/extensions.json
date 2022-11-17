@@ -1,0 +1,22 @@
+{
+    "recommendations": [
+        "eg2.vscode-npm-script",
+        "ms-python.vscode-pylance",
+        "bibhasdn.django-snippets",
+        "bigonesystems.django",
+        "ms-python.python",
+        "frhtylcn.pythonsnippets",
+        "ms-toolsai.jupyter",
+        "himanoa.python-autopep8",
+        "foxundermoon.shell-format",
+        "gruntfuggly.todo-tree",
+        "be5invis.toml",
+        "redhat.vscode-yaml",
+        "dsebastien.vscode-python-pack",
+        "ryuta46.multi-command",
+        "shamanu4.django-intellisense",
+        "Sid200026.django-snippets",
+        "thebarkman.vscode-djaneiro",
+        "wcwhitehead.bootstrap-3-snippets"
+    ]
+}

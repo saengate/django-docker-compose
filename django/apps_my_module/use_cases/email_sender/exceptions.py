@@ -1,0 +1,2 @@
+class EmailSenderException(Exception):
+    pass

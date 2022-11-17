@@ -1,0 +1,29 @@
+[run]
+source=.
+omit =
+    mockserver/*
+    .env/*
+    venv/*
+    env/*
+    .venv/*
+    */__init__.py    
+    */enum_*
+    */tests/*    
+    */exceptions.py
+    */mock_*
+    */migrations/*
+    */config/*
+    manage.py
+    */urls.py
+    run_worker.py
+    */admin.py
+    */color_logging/*
+    */apps.py    
+    */.heroku/*
+
+[report]
+exclude_lines =
+    import
+    logger
+    logging
+ 
