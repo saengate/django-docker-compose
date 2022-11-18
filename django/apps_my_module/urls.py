@@ -15,6 +15,7 @@ from apps_my_module import views
 # Routers provide a way of automatically determining the URL conf.
 router = routers.SimpleRouter()
 router.register(r'users', views.UserViewSet, basename='users')
+router.register(r'custom', views.CustomViews, basename='custom_views')
 
 patterns = [
     url(r'^login/', obtain_jwt_token, name='login'),
