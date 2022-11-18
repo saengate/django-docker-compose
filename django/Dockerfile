@@ -16,7 +16,7 @@ RUN virtualenv venv
 
 WORKDIR /tmp
 
-COPY ./poetry.lock ./
+# COPY ./poetry.lock ./
 COPY ./pyproject.toml ./
 
 # RUN sed -i 's|#!/usr/bin/env python|#!/usr/bin/env python3|g' ~/.poetry/bin/poetry
