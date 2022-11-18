@@ -25,15 +25,15 @@ RUN poetry export -n --without-hashes -f requirements.txt -o /tmp/requirements.t
 RUN bash -c "source /opt/venv/bin/activate && pip3 install -r /tmp/requirements.txt --no-cache-dir"
 
 
-RUN mkdir -p /var/log/cforemoto/
-RUN touch /var/log/cforemoto/cforemoto.log
-RUN chmod 766 /var/log/cforemoto/cforemoto.log
+RUN mkdir -p /var/log/apps_my_module/
+RUN touch /var/log/apps_my_module/apps_my_module.log
+RUN chmod 766 /var/log/apps_my_module/apps_my_module.log
 
 COPY ./scripts/* /usr/local/bin/
 RUN bash -c "chmod 755 -R /usr/local/bin"
 
-COPY ./ /webapps/cforemoto
-WORKDIR /webapps/cforemoto
+COPY ./ /webapps/apps_my_module
+WORKDIR /webapps/apps_my_module
 EXPOSE 7010 7001 7002
 
 CMD ["/bin/bash"]
