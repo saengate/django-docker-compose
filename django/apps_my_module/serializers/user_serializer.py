@@ -9,13 +9,12 @@ from rest_framework.exceptions import AuthenticationFailed
 
 from utils.string_utils import get_hash_md5_for_string
 from utils.date_utils import DateUtils
-from cforemoto.use_cases.email_sender import UserConfirmationEmail
-from cforemoto.use_cases.email_sender.exceptions import EmailSenderException
-from cforemoto.serializers.validators import (
+# from apps_my_module.use_cases.email_sender import UserConfirmationEmail
+# from apps_my_module.use_cases.email_sender.exceptions import EmailSenderException
+from apps_my_module.serializers.validators import (
     RutValidator,
-    UserCompanyValidator,
 )
-from cforemoto.models import (
+from apps_my_module.models import (
     User,
     UserToken,
 )
@@ -72,11 +71,11 @@ class UserSignUpSerializer(serializers.Serializer):
     )
 
     class Meta:
-        validators = [UserCompanyValidator()]
+        validators = []
 
     def __init__(self, *args, **kwargs):
-        self.mailer = kwargs.pop(
-            'email_sender', None) or UserConfirmationEmail()
+        """ self.mailer = kwargs.pop(
+            'email_sender', None) or UserConfirmationEmail() """
         super().__init__(*args, **kwargs)
 
     def create(self, data):
@@ -95,7 +94,7 @@ class UserSignUpSerializer(serializers.Serializer):
     def __send_confirmation_email(self, user):
         try:
             self.mailer.send(user)
-        except EmailSenderException as e:
+        except Exception as e:
             logger.error(f'send confirmation mail error: {e}')
 
 

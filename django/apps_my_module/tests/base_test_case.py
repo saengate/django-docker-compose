@@ -12,10 +12,10 @@ class BaseTestCase(TestCase):
 
     def setUp(self):
         self.confirmation_email_mock = self.create_mock_patch(
-            'cforemoto.use_cases.email_sender.UserConfirmationEmail.send',
+            'apps_my_module.use_cases.email_sender.UserConfirmationEmail.send',
         )
         self.password_recovery_email_mock = self.create_mock_patch(
-            'cforemoto.use_cases.email_sender.PasswordRecoveryEmail.send',
+            'apps_my_module.use_cases.email_sender.PasswordRecoveryEmail.send',
         )
 
     def create_mock_patch(self, module_path: str):

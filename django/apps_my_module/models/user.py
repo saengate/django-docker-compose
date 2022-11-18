@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from cforemoto.models.managers import CustomUserManager
+from apps_my_module.models.managers import CustomUserManager
 from rest_framework.authtoken.models import Token
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 

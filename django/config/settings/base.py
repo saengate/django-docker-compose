@@ -26,7 +26,7 @@ JWT_AUTH = {
     'JWT_DECODE_HANDLER':
         'rest_framework_jwt.utils.jwt_decode_token',
     'JWT_RESPONSE_PAYLOAD_HANDLER':
-        'cforemoto.serializers.jwt_user_login_serializer',
+        'apps_my_module.serializers.jwt_user_login_serializer',
     'JWT_EXPIRATION_DELTA': timedelta(days=1),
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=1),
     'JWT_ALLOW_REFRESH': True,

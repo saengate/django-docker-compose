@@ -18,7 +18,7 @@ from apps_my_module.serializers.user_serializer import (
     UserSignUpSerializer,
 )
 from apps_my_module.models import User
-from apps_my_module.serializers import CustomRefreshAuthTokenSerializer
+# from apps_my_module.serializers import CustomRefreshAuthTokenSerializer
 from apps_my_module.use_cases.shortcuts import move_users_to_blacklist
 from utils.generic_views import GenericView
 
@@ -80,4 +80,5 @@ class UserViewSet(GenericView):
 
 
 class CustomRefreshJSONWebTokenView(RefreshJSONWebTokenView):
-    serializer_class = CustomRefreshAuthTokenSerializer
+    pass
+    # serializer_class = CustomRefreshAuthTokenSerializer
