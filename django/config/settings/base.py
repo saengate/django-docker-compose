@@ -15,11 +15,10 @@ from config.core_settings import *  # NOQA
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 INSTALLED_APPS = INSTALLED_APPS + [  # NOQA
-    'cforemoto',
-    'fintoc_app',
+    'apps_my_module',
 ]
 
-AUTH_USER_MODEL = 'cforemoto.User'
+AUTH_USER_MODEL = 'apps_my_module.User'
 
 JWT_AUTH = {
     'JWT_ENCODE_HANDLER':
@@ -41,11 +40,7 @@ DOCS_EXPIRE_DOCUMENTS_TEMPLATE = os.environ.get(
     'DOCS_EXPIRE_DOCUMENTS_TEMPLATE', '--')
 FORGOT_PASSWORD_TEMPLATE = os.environ.get('FORGOT_PASSWORD_TEMPLATE', '--')
 USER_CONFIRMATION_TEMPLATE = os.environ.get('USER_CONFIRMATION_TEMPLATE', '--')
-CEO_EMAIL_ADDRESS = os.environ.get('CEO_EMAIL_ADDRESS', '')
-NO_REPLY_EMAIL_ADDRESS = (
-    'no-reply@cforemoto.com',
-    'CFOremoto',
-)
+
 SENDGRID_CATEGORIES = {
     'EXPIRED_DOCUMENTS': 'Expired Documents',
     'NEAR_TO_EXPIRE_DOCUMENTS': 'Near to expire documents',
@@ -53,44 +48,7 @@ SENDGRID_CATEGORIES = {
     'USER_CONFIRMATION': 'User Confirmation',
 }
 SEGMENT_WRITE_KEY = os.environ.get('SEGMENT_WRITE_KEY')
-CASH_FLOW_FORECAST_DAYS = 90
 
-FINTOC_API_URL = 'https://api.fintoc.com/v1'
-FINTOC_SECRET_KEY = os.environ.get('FINTOC_SECRET_KEY', '--')
-FINTOC_PUBLIC_KEY = os.environ.get('FINTOC_PUBLIC_KEY', '--')
-FINTOC_DEFAULT_SINCE_DATE = datetime(2020, 1, 1)
-
-HEADER_WEBHOOK_N8N = os.environ.get('HEADER_WEBHOOK_N8N')
-N8N_URL = os.environ.get('N8N_URL', 'http://cfo_n8n:5678/webhook-test')
-
-CHITA_PROMOTIONAL_CODE = os.environ.get(
-    'CHITA_PROMOTIONAL_CODE',
-    'F8AS-ArS4-GRE8-As5G',
-)
-CHITA_URL = os.environ.get(
-    'CHITA_URL',
-    'http://0.0.0.0:7010/users/active_user/',
-)
-CHITA_HEADERS = os.environ.get('CHITA_HEADERS')
-
-INVOICES_SII_CODES = [33, 34]
-TICKETS_SII_CODES = [35, 38, 39, 41]
-DEBITS_AND_CREDITS_NOTES_SII_CODES = [56, 61]
-RELATED_SII_CODES = INVOICES_SII_CODES + TICKETS_SII_CODES + \
-    DEBITS_AND_CREDITS_NOTES_SII_CODES
-
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-
-# Tiempo de espera antes de ejecutar las tareas programadas
-# No hace falta esperar localmente, o ya se han descargado
-# o es ambiente de pruebas
-WAIT_FOR_FINTOC = {'seconds': 2}
 DELAY_SECS_BETWEEN_TASK = 1
 DEFAULT_FILE_STORAGE = 'utils.custom_storage.CustomStorage'
 

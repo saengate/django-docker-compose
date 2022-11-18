@@ -1,1 +1,1 @@
-default_app_config = 'cforemoto.apps.CFORemotoConfig'
+default_app_config = 'apps_my_module.apps.AppsMyModuleConfig'
