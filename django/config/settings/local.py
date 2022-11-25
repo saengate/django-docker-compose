@@ -86,14 +86,6 @@ LOGGING = {
         },
     },
     'handlers': {
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/apps_my_module/apps_my_module.log',
-            'maxBytes': 1024 * 1024 * 10,  # 10MB
-            'backupCount': 5,
-            'formatter': 'standard',
-        },
         'console': {
             'class': 'logging.StreamHandler',
             'formatter': 'standard',
@@ -102,13 +94,27 @@ LOGGING = {
     'loggers': {
         '': {
             'class': 'utils.color_logging.NewLogger',
-            'handlers': ['console', 'file'],
+            'handlers': ['console'],
             'level': 'INFO',
             'propagate': True,
         },
     },
 }
 
+""" 'handlers': {
+    'file': {
+        'level': 'INFO',
+        'class': 'logging.handlers.RotatingFileHandler',
+        'filename': '/var/log/apps_my_module/apps_my_module.log',
+        'maxBytes': 1024 * 1024 * 10,  # 10MB
+        'backupCount': 5,
+        'formatter': 'standard',
+    },
+    'console': {
+        'class': 'logging.StreamHandler',
+        'formatter': 'standard',
+    },
+}, """
 BACKEND_URL = 'http://0.0.0.0:7010'
 FRONTEND_URL = 'http://0.0.0.0'
 

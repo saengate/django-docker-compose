@@ -1,18 +1,7 @@
-import json
 import sys
 from io import StringIO
 
-from django.urls import reverse
-from django.conf import settings
-from django.core.management import call_command
-from unittest.mock import patch
-
 from apps_my_module.tests.views.view_base_test_case import ViewBaseTestCase
-from apps_my_module.use_cases.email_sender.exceptions import EmailSenderException
-from apps_my_module.models import (
-    User,
-)
-from utils.string_utils import random_string
 
 
 class TestUserView(ViewBaseTestCase):
