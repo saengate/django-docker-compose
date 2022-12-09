@@ -11,9 +11,7 @@ from utils.string_utils import get_hash_md5_for_string
 from utils.date_utils import DateUtils
 # from apps_my_module.use_cases.email_sender import UserConfirmationEmail
 # from apps_my_module.use_cases.email_sender.exceptions import EmailSenderException
-from apps_my_module.serializers.validators import (
-    RutValidator,
-)
+# from apps_my_module.serializers.validators import RutValidator
 from apps_my_module.models import (
     User,
     UserToken,
@@ -64,7 +62,7 @@ class UserSignUpSerializer(serializers.Serializer):
     first_name = serializers.CharField(min_length=2, max_length=50)
     last_name = serializers.CharField(min_length=2, max_length=100)
 
-    rut = serializers.CharField(validators=[RutValidator()])
+    # rut = serializers.CharField(validators=[RutValidator()])
     token = serializers.CharField(
         max_length=100,
         required=False,
@@ -85,9 +83,9 @@ class UserSignUpSerializer(serializers.Serializer):
 
         user = User.objects.create_user(**data)
 
-        if not user.is_confirmed:
-            # sync_to_async(self.__send_confirmation_email(user))
-            pass
+        """ if not user.is_confirmed:
+            sync_to_async(self.__send_confirmation_email(user))
+            pass """
 
         return user
 
