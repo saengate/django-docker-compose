@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from apps_my_module.models import Blog
 
 
