@@ -34,16 +34,10 @@ JWT_AUTH = {
 }
 
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', '')
-DOCS_NEAR_TO_EXPIRE_TEMPLATE = os.environ.get(
-    'DOCS_NEAR_TO_EXPIRE_TEMPLATE', '--')
-DOCS_EXPIRE_DOCUMENTS_TEMPLATE = os.environ.get(
-    'DOCS_EXPIRE_DOCUMENTS_TEMPLATE', '--')
 FORGOT_PASSWORD_TEMPLATE = os.environ.get('FORGOT_PASSWORD_TEMPLATE', '--')
 USER_CONFIRMATION_TEMPLATE = os.environ.get('USER_CONFIRMATION_TEMPLATE', '--')
 
 SENDGRID_CATEGORIES = {
-    'EXPIRED_DOCUMENTS': 'Expired Documents',
-    'NEAR_TO_EXPIRE_DOCUMENTS': 'Near to expire documents',
     'PASSWORD_RECOVERY': 'Password Recovery',
     'USER_CONFIRMATION': 'User Confirmation',
 }

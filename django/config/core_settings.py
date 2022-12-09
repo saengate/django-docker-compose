@@ -186,7 +186,7 @@ RQ_QUEUES = {
 }
 
 # If you need custom exception handlers
-# RQ_EXCEPTION_HANDLERS = ['path.to.my.handler']
+# RQ_EXCEPTION_HANDLERS
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     logging.disable(logging.CRITICAL)

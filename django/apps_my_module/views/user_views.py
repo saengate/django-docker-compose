@@ -1,27 +1,21 @@
 import logging
 
-from django.http import HttpResponseRedirect
 from django.conf import settings
 from django.db import transaction
-from rest_framework import (
-    status,
-    permissions,
-)
+from django.http import HttpResponseRedirect
+from rest_framework import permissions, status
 from rest_framework.decorators import action
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_jwt.views import RefreshJSONWebTokenView
+from rest_framework.response import Response
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework_jwt.views import RefreshJSONWebTokenView
 
-from apps_my_module.serializers.user_serializer import (
-    UserModelSerializer,
-    UserSignUpSerializer,
-)
 from apps_my_module.models import User
+from apps_my_module.serializers import (UserModelSerializer,
+                                        UserSignUpSerializer)
 # from apps_my_module.serializers import CustomRefreshAuthTokenSerializer
 from apps_my_module.use_cases.shortcuts import move_users_to_blacklist
 from utils.generic_views import GenericView
-
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +41,8 @@ class UserViewSet(GenericView):
         serializer = UserSignUpSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+
+        logger.info(f"Created new user {user}")  # NOQA
         data = UserModelSerializer(user).data
         return Response(data, status=status.HTTP_201_CREATED)
 
@@ -69,7 +65,7 @@ class UserViewSet(GenericView):
         else:
             user.is_confirmed = True
             user.save()
-        redirect_url = settings.CFO_WEBSITE_URL
+        redirect_url = settings.FRONTEND_URL
         return HttpResponseRedirect(redirect_to=redirect_url)
 
     @transaction.atomic
