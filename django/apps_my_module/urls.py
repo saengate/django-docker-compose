@@ -17,6 +17,8 @@ router = routers.SimpleRouter()
 router.register(r'users', views.UserViewSet, basename='users')
 router.register(r'custom', views.CustomViews, basename='custom_views')
 router.register(r'blog', views.BlogViews, basename='blog_views')
+router.register(r'author', views.AuthorViews, basename='author_views')
+router.register(r'entry', views.EntryViews, basename='entry_views')
 
 patterns = [
     url(r'^login/', obtain_jwt_token, name='login'),

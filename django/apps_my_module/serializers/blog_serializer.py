@@ -15,7 +15,7 @@ class BlogSerializer(serializers.ModelSerializer):
         return super().to_internal_value(data)
 
     def to_representation(self, instance):
-        instance.name = 'bababababa'
+        # instance.name = 'bababababa'
         return super().to_representation(instance)
 
     def create(self, validated_data):
