@@ -12,8 +12,10 @@ class EntryFactory:
         self,
         **kwargs,
     ):
-        self.blog_instance = BlogFactory().create()
-        self.author_instance = AuthorFactory().create()
+        self.blog_factory = BlogFactory()
+        self.blog_instance = self.blog_factory.create()
+        self.author_factory = AuthorFactory()
+        self.author_instance = self.author_factory.create()
         self.data = {
             'blog': self.blog_instance,
             'headline': 'Bla Bla',
