@@ -13,7 +13,7 @@ from rest_framework_jwt.views import RefreshJSONWebTokenView
 from users.models import User
 from users.serializers import (UserModelSerializer,
                                UserSignUpSerializer)
-# from users.serializers import CustomRefreshAuthTokenSerializer
+from users.serializers import CustomRefreshAuthTokenSerializer
 from users.utils.shortcuts import move_users_to_blacklist
 from utils.generic_views import GenericView
 
@@ -76,5 +76,4 @@ class UserViewSet(GenericView):
 
 
 class CustomRefreshJSONWebTokenView(RefreshJSONWebTokenView):
-    pass
-    # serializer_class = CustomRefreshAuthTokenSerializer
+    serializer_class = CustomRefreshAuthTokenSerializer

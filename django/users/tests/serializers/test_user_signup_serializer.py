@@ -8,7 +8,7 @@ from utils.string_utils import (
 )
 from users.serializers.exceptions import ServiceUnavailable
 from users.serializers import UserSignUpSerializer
-from users.use_cases.email_sender.exceptions import EmailSenderException """
+from users.utils.email_sender.exceptions import EmailSenderException """
 
 
 class TestUserSignupSerializer(TestCase):

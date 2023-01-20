@@ -1,22 +1,19 @@
-from datetime import datetime
 import logging
 
 from django.conf import settings
 from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from rest_framework.exceptions import AuthenticationFailed
+# from asgiref.sync import sync_to_async
 
 from utils.string_utils import get_hash_md5_for_string
 from utils.date_utils import DateUtils
-# from users.use_cases.email_sender import UserConfirmationEmail
-# from users.use_cases.email_sender.exceptions import EmailSenderException
+# from users.utils.email_sender import UserConfirmationEmail
 # from users.serializers.validators import RutValidator
 from users.models import (
     User,
     UserToken,
 )
-from asgiref.sync import sync_to_async
 
 
 logger = logging.getLogger(__name__)
@@ -83,9 +80,9 @@ class UserSignUpSerializer(serializers.Serializer):
 
         user = User.objects.create_user(**data)
 
-        """ if not user.is_confirmed:
-            sync_to_async(self.__send_confirmation_email(user))
-            pass """
+        if not user.is_confirmed:
+            # sync_to_async(self.__send_confirmation_email(user))
+            pass
 
         return user
 
@@ -116,6 +113,6 @@ def jwt_user_login_serializer(token, user=None, request=None, issued_at=None):
     return {
         'token': token,
         'user': UserModelSerializer(user, context={'request': request}).data,
-        'exp': datetime.utcnow() + settings.JWT_AUTH['JWT_EXPIRATION_DELTA'],
+        'exp': DateUtils.now() + settings.JWT_AUTH['JWT_EXPIRATION_DELTA'],
         'orig_iat': issued_at,
     }

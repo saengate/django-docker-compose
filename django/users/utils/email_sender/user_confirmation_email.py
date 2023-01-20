@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from users.use_cases.email_sender.exceptions import EmailSenderException
+from users.utils.email_sender.exceptions import EmailSenderException
 from utils.services.sendgrid_client import SendGridClient
 
 
