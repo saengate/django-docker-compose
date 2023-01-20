@@ -15,10 +15,11 @@ from config.core_settings import *  # NOQA
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 INSTALLED_APPS = INSTALLED_APPS + [  # NOQA
+    'users',
     'apps_my_module',
 ]
 
-AUTH_USER_MODEL = 'apps_my_module.User'
+AUTH_USER_MODEL = 'users.User'
 
 JWT_AUTH = {
     'JWT_ENCODE_HANDLER':
@@ -26,7 +27,7 @@ JWT_AUTH = {
     'JWT_DECODE_HANDLER':
         'rest_framework_jwt.utils.jwt_decode_token',
     'JWT_RESPONSE_PAYLOAD_HANDLER':
-        'apps_my_module.serializers.jwt_user_login_serializer',
+        'users.serializers.jwt_user_login_serializer',
     'JWT_EXPIRATION_DELTA': timedelta(days=1),
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=1),
     'JWT_ALLOW_REFRESH': True,
@@ -47,7 +48,7 @@ DELAY_SECS_BETWEEN_TASK = 1
 DEFAULT_FILE_STORAGE = 'utils.custom_storage.CustomStorage'
 
 AUTHENTICATION_BACKENDS = [
-    'apps_my_module.auth.AuthenticateBackend',
+    'users.auth.AuthenticateBackend',
 ]
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
