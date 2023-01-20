@@ -28,15 +28,15 @@ msgstr "Español"
 msgid "English"
 msgstr "Inglés"
 
-#: cforemoto/msgs/info/__init__.py:5
+#: apps_my_module/msgs/info/__init__.py:5
 msgid "Creando un registro en los logs"
 msgstr ""
 
-#: cforemoto/msgs/info/__init__.py:6
+#: apps_my_module/msgs/info/__init__.py:6
 msgid "Hola, Mundo. Este es el index."
 msgstr ""
 
-#: cforemoto/views.py:52
+#: apps_my_module/views.py:52
 #, python-brace-format
 msgid "Debe verse en el lenguaje del settings: {msgs.I.TEST_LOG}"
 msgstr ""
