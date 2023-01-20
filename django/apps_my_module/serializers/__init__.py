@@ -5,16 +5,11 @@ from apps_my_module.serializers.entry_serializer import (
     EntrySerializer,
     ReadEntrySerializer,
 )
-from apps_my_module.serializers.user_serializer import (
-    UserModelSerializer, UserSignUpSerializer, jwt_user_login_serializer)
 
 __all__ = [
     'AuthorSerializer',
     'BlogSerializer',
     'EntrySerializer',
-    'CustomSerializer',
     'ReadEntrySerializer',
-    'UserSignUpSerializer',
-    'UserModelSerializer',
-    'jwt_user_login_serializer',
+    'CustomSerializer',
 ]
