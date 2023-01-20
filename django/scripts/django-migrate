@@ -3,7 +3,7 @@
 
 main() {
     source /opt/venv/bin/activate
-    cd /webapps/cforemoto
+    cd /webapps/apps_my_module
     ./manage.py makemigrations --noinput
     ./manage.py migrate --noinput --run-syncdb
     ./manage.py collectstatic --noinput
