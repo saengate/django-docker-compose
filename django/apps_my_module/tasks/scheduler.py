@@ -5,7 +5,6 @@ from rq.registry import (
     clean_registries,
 )
 
-from apps_my_module.tasks.user_inactive import UserInactive
 from utils.date_utils import DateUtils
 
 
@@ -27,9 +26,9 @@ def add_scheduler_tasks():
 
     scheduler = django_rq.get_scheduler(name_queue)
 
-    user_inactive = scheduler.cron(
+    """ new_task = scheduler.cron(
         '0 0 * * 1',
-        func=UserInactive().start,
+        func=CLASSTASK().start,
         args=[],
         kwargs={},
         repeat=None,
@@ -38,5 +37,6 @@ def add_scheduler_tasks():
         use_local_timezone=True,
     )
     registry.schedule(user_inactive, DateUtils().now())
+    """
 
     logger.info(f'Enqueue {registry.count} jobs for apps!')

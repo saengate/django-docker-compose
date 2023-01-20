@@ -15,17 +15,19 @@ Including another URLconf
 """
 import os
 
-from django.conf.urls import (
-    url,
+from django.urls import (
+    path,
+    re_path,
     include,
 )
 from django.conf import settings
 
 
 urlpatterns = [
-    url('i18n/', include('django.conf.urls.i18n')),
-    url('', include('apps_my_module.urls', namespace='apps_my_module')),
-    url('django-rq/', include('django_rq.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('', include('users.urls', namespace='users')),
+    path('api/v1/', include('apps_my_module.urls', namespace='apps_my_module')),
+    path('django-rq/', include('django_rq.urls')),
 ]
 
 if settings.DEBUG:
@@ -59,19 +61,19 @@ if settings.DEBUG:
         settings.STATIC_URL, document_root=os.path.join(settings.STATIC_ROOT),
     )
     urlpatterns += [
-        url(
-            'favicon.ico$',
+        path(
+            'favicon.ico',
             RedirectView.as_view(
-                url=settings.STATIC_URL + 'cforemoto/images/favicon.ico',
+                url=settings.STATIC_URL + 'apps_my_module/images/favicon.ico',
             ),
         ),
-        url(r'^swagger(?P<format>\.json|\.yaml)$',
-            schema_view.without_ui(cache_timeout=0),
-            name='schema-json'),
-        url(r'^swagger/$',
-            schema_view.with_ui('swagger', cache_timeout=0),
-            name='schema-swagger-ui'),
-        url(r'^redoc/$',
-            schema_view.with_ui('redoc', cache_timeout=0),
-            name='schema-redoc'),
+        re_path(r'^swagger(?P<format>\.json|\.yaml)$',
+                schema_view.without_ui(cache_timeout=0),
+                name='schema-json'),
+        re_path(r'^swagger/$',
+                schema_view.with_ui('swagger', cache_timeout=0),
+                name='schema-swagger-ui'),
+        re_path(r'^redoc/$',
+                schema_view.with_ui('redoc', cache_timeout=0),
+                name='schema-redoc'),
     ]
