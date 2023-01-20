@@ -1,5 +1,7 @@
 # from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 
 from apps_my_module.serializers import (
     EntrySerializer,
@@ -10,7 +12,8 @@ from utils.generic_views import GenericView
 
 
 class EntryViews(GenericView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JSONWebTokenAuthentication]
     serializer_class = None
     model = Entry
     queryset = Entry.objects.all()
