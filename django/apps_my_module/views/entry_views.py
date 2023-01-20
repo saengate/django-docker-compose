@@ -14,13 +14,11 @@ from utils.generic_views import GenericView
 class EntryViews(GenericView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JSONWebTokenAuthentication]
-    serializer_class = None
+    serializer_class = EntrySerializer
     model = Entry
     queryset = Entry.objects.all()
 
     def get_serializer_class(self):
-        if self.request.method == 'POST':
-            return EntrySerializer
-        elif self.request.method == 'GET':
+        if self.request.method == 'GET':
             return ReadEntrySerializer
         return super().get_serializer_class()
