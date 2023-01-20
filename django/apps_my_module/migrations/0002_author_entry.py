@@ -7,14 +7,15 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('apps_my_module', '0002_blog'),
+        ('apps_my_module', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
             name='Author',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('email', models.EmailField(max_length=254)),
             ],
@@ -22,7 +23,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Entry',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('headline', models.CharField(max_length=255)),
                 ('body_text', models.TextField()),
                 ('pub_date', models.DateField()),
@@ -31,7 +33,8 @@ class Migration(migrations.Migration):
                 ('number_of_pingbacks', models.IntegerField()),
                 ('rating', models.IntegerField()),
                 ('authors', models.ManyToManyField(to='apps_my_module.Author')),
-                ('blog', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apps_my_module.blog')),
+                ('blog', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='apps_my_module.blog')),
             ],
         ),
     ]
