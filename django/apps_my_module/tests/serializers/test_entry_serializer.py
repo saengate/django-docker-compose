@@ -67,5 +67,4 @@ class TestEntrySerializer(TestCase):
             self.assertDictEqual(
                 output,
                 expected,
-
             )
