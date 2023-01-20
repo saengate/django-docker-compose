@@ -38,7 +38,7 @@ createadmin() {
     django-migrate
     source /opt/venv/bin/activate
     airflow initdb
-    cd /webapps/cforemoto
+    cd /webapps/apps_my_module
     echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | ./manage.py shell
 }
 
@@ -50,7 +50,7 @@ translate() {
 
 logdjango() {
     echo "${GREEN}Logs del projecto${NC}"
-    tail -100f /var/log/cforemoto/cforemoto.log
+    tail -100f /var/log/apps_my_module/apps_my_module.log
 }
 
 logsupervisor() {

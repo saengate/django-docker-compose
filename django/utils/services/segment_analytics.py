@@ -3,7 +3,7 @@ import logging
 
 from django.conf import settings
 
-from cforemoto.models import User
+from users.models import User
 
 
 logger = logging.getLogger(__name__)
