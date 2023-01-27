@@ -8,10 +8,10 @@ from apps_my_module.serializers import (
     ReadEntrySerializer,
 )
 from apps_my_module.models import Entry
-from utils.generic_views import GenericView
+from utils.viewsets import GodModelViewSet
 
 
-class EntryViews(GenericView):
+class EntryViews(GodModelViewSet):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JSONWebTokenAuthentication]
     serializer_class = EntrySerializer
