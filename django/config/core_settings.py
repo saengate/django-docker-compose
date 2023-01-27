@@ -81,6 +81,19 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ],
     'DATETIME_FORMAT': DATETIME_OUTPUT_FORMAT,
+    'DEFAULT_PAGINATION_CLASS': \
+    'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'loginAttempts': '4/hr',
+        'anon': '6/day',
+        'user': '10/day',
+        'auth_views': '100/day',
+    },
 }
 
 

@@ -17,7 +17,7 @@ router = routers.SimpleRouter()
 router.register(r'users', views.UserViewSet, basename='users')
 
 patterns = [
-    path('login/', obtain_jwt_token, name='login'),
+    path('login/', views.CustomObtainJSONWebTokenView.as_view(), name='login'),
     path('logout/', BlacklistView.as_view({'post': 'create'})),
     path('refresh_token/', views.CustomRefreshJSONWebTokenView.as_view()),
     path('verify_token/', verify_jwt_token, name='verify_token'),

@@ -1,7 +1,6 @@
 import logging
 
 from django.conf import settings
-from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 # from asgiref.sync import sync_to_async
@@ -104,7 +103,7 @@ def jwt_user_login_serializer(token, user=None, request=None, issued_at=None):
     with drf add-ons that might require `pk` field in order (eg. jsonapi).
     """
 
-    update_last_login(None, user)
+    user.update_last_login()
     UserToken.objects.update_or_create(
         user=user,
         defaults={'key': token},
