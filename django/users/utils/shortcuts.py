@@ -9,7 +9,6 @@ from users.models import UserToken
 
 
 def move_users_to_blacklist(users):
-    users = users.select_related('auth_token').all()
     BlacklistedToken.objects.delete_stale_tokens()
     blacklist_tokens_list = []
 
