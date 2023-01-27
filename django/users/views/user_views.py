@@ -3,7 +3,7 @@ import logging
 from django.conf import settings
 from django.db import transaction
 from django.http import HttpResponseRedirect
-from rest_framework import permissions, status
+from rest_framework import permissions, status, generics, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -21,14 +21,12 @@ from users.serializers import (
 )
 from users.serializers import CustomRefreshAuthTokenSerializer
 from users.utils.shortcuts import move_users_to_blacklist
-from utils.generic_views import GenericView
+
 
 logger = logging.getLogger(__name__)
 
 
-class UserViewSet(GenericView):
-
-    serializer_class = UserModelSerializer
+class UserViewSet(generics.DestroyAPIView, viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
 
     def get_permissions(self):
@@ -68,8 +66,8 @@ class UserViewSet(GenericView):
 
     @transaction.atomic
     def destroy(self, request, *args, **kwargs):
+        move_users_to_blacklist([self.request.user])
         self.request.user.delete()
-        move_users_to_blacklist(self.request.user)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
