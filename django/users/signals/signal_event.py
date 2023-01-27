@@ -1,14 +1,18 @@
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.contrib.auth.signals import user_login_failed
 
-from apps_my_module.models import Model
+from users.models import User
 
 
-@receiver(
-    post_save,
-    sender=Model,
-    dispatch_uid='ID_KEY',
-)
-def recurring_payment_created(sender, instance, created, *args, **kwargs):
-    # Your code here
-    pass
+@receiver(user_login_failed)
+def failed_user_login(**kwargs):
+    username = kwargs.get('credentials').get('username')
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        pass
+    else:
+        user.wrong_password_count += 1
+        if user.wrong_password_count >= 3:
+            user.is_active = False
+        user.save(update_fields=['is_active', 'wrong_password_count'])

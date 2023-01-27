@@ -19,7 +19,9 @@ class AuthenticateBackend(ModelBackend):
             # difference between an existing and a nonexistent user (#20760).
             UserModel().set_password(password)
         else:
-            if user.check_password(password):
+            if user.is_active is False and user.wrong_password_count >= 3:
+                UserModel().set_password(password)
+            elif user.check_password(password):
                 if not self.user_can_authenticate(user):
                     user.is_active = True
                     user.save()
