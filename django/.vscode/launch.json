@@ -124,7 +124,7 @@
                 "test",
                 "--no-input",
                 "-k",
-                "TestName"
+                "TestCustomView"
             ],
             "django": true
         }
