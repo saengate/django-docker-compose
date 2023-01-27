@@ -8,11 +8,17 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-from rest_framework_jwt.views import RefreshJSONWebTokenView
+from rest_framework_jwt.views import (
+    RefreshJSONWebTokenView,
+    ObtainJSONWebTokenView,
+)
 
+from users.auth import UserLoginRateThrottle
 from users.models import User
-from users.serializers import (UserModelSerializer,
-                               UserSignUpSerializer)
+from users.serializers import (
+    UserModelSerializer,
+    UserSignUpSerializer,
+)
 from users.serializers import CustomRefreshAuthTokenSerializer
 from users.utils.shortcuts import move_users_to_blacklist
 from utils.generic_views import GenericView
@@ -46,14 +52,6 @@ class UserViewSet(GenericView):
         data = UserModelSerializer(user).data
         return Response(data, status=status.HTTP_201_CREATED)
 
-    @action(detail=False, methods=['post'])
-    def active_user(self, request):
-        exists = User.objects.filter(
-            email=request.data.get('email'),
-            is_active=True,
-        ).exists()
-        return Response(exists, status=status.HTTP_200_OK)
-
     @action(detail=False, methods=['get'])
     def confirm(self, request):
         try:
@@ -77,3 +75,7 @@ class UserViewSet(GenericView):
 
 class CustomRefreshJSONWebTokenView(RefreshJSONWebTokenView):
     serializer_class = CustomRefreshAuthTokenSerializer
+
+
+class CustomObtainJSONWebTokenView(ObtainJSONWebTokenView):
+    throttle_classes = [UserLoginRateThrottle]

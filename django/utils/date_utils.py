@@ -135,7 +135,8 @@ class DateUtils:
     def utcfromtimestamp(unix_time: float) -> datetime:
         return datetime.utcfromtimestamp(unix_time)
 
-    def now(self) -> datetime:
+    @staticmethod
+    def now() -> datetime:
         return timezone.now()
 
     def cast_from_str(
