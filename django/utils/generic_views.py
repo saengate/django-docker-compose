@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from django.core.cache import cache
 
 
@@ -10,6 +11,8 @@ class GenericView(viewsets.ModelViewSet):
     filter_fields = '__all__'
     ordering = 'id'
     cache_timeout = 10000
+    throttle_scope = 'auth_views'
+    throttle_classes = [ScopedRateThrottle]
 
     def clean_cache(self, request):
         user_id = request.user.id
