@@ -3,10 +3,7 @@ from django.urls import (
     include,
 )
 from rest_framework import routers
-from rest_framework_jwt.views import (
-    obtain_jwt_token,
-    verify_jwt_token,
-)
+from rest_framework_jwt.views import verify_jwt_token
 from rest_framework_jwt.blacklist.views import BlacklistView
 
 from users import views

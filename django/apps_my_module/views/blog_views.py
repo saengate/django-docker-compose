@@ -3,10 +3,10 @@ from rest_framework.permissions import AllowAny
 
 from apps_my_module.serializers import BlogSerializer
 from apps_my_module.models import Blog
-from utils.generic_views import GenericView
+from utils.viewsets import GodModelViewSet
 
 
-class BlogViews(GenericView):
+class BlogViews(GodModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = BlogSerializer
     model = Blog
