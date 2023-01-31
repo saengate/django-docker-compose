@@ -15,8 +15,17 @@ import sys
 import logging
 
 from rest_framework import compat
+from django.core.exceptions import ImproperlyConfigured
 
-from utils.date_utils import DATETIME_OUTPUT_FORMAT
+from modules.utils.date_utils import DATETIME_OUTPUT_FORMAT
+
+
+def get_secret(setting):
+    try:
+        return os.environ[setting]
+    except KeyError:
+        error_msg = f'Set the {setting} environment variable'
+        raise ImproperlyConfigured(error_msg)
 
 
 # I have the same issue, but poetry does not allow me to
@@ -27,7 +36,9 @@ compat.md_filter_add_syntax_highlight = lambda md: False
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.abspath(BASE_DIR)
-ROOT_URLCONF = 'config.urls'
+
+BASE_FOLDER_CONFIGS = 'config'
+ROOT_URLCONF = f'{BASE_FOLDER_CONFIGS}.urls'
 
 # Application definition
 
@@ -62,7 +73,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = f'{BASE_FOLDER_CONFIGS}.urls'
 
 
 REST_FRAMEWORK = {
@@ -115,12 +126,25 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = f'{BASE_FOLDER_CONFIGS}.wsgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = []
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -143,12 +167,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # django-admin makemessages -a && django-admin compilemessages
 
+LANGUAGE_CODE = 'en-us'
+
 TIME_ZONE = 'UTC'
-USE_TZ = True
 
 USE_I18N = True
 
 USE_L10N = True
+
+USE_TZ = True
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
@@ -166,7 +193,7 @@ LANGUAGES = [
 
 DJANGO_REST_MULTITOKENAUTH_RESET_TOKEN_EXPIRY_TIME = 24
 
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ==============================================================================
 # REDIS

@@ -1,9 +1,6 @@
 import os
+from datetime import timedelta
 
-from datetime import (
-    datetime,
-    timedelta,
-)
 from config.core_settings import *  # NOQA
 
 # Quick-start development settings - unsuitable for production
@@ -12,11 +9,11 @@ from config.core_settings import *  # NOQA
 # SECURITY WARNING: keep the secret key used in production secret!
 # Refer to secret from project Secrets usually PROJECTNAME_SECRET
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = get_secret('SECRET_KEY')
 
 INSTALLED_APPS = INSTALLED_APPS + [  # NOQA
-    'users',
-    'apps_my_module',
+    'modules.users',
+    'modules.apps_my_module',
 ]
 
 AUTH_USER_MODEL = 'users.User'
