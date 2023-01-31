@@ -1,7 +1,7 @@
 from unittest import TestCase
 from rest_framework.serializers import ValidationError
 
-from apps_my_module.serializers.validators import RutValidator
+from modules.apps_my_module.serializers.validators import RutValidator
 
 
 class TestRutValidator(TestCase):

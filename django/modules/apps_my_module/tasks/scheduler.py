@@ -5,7 +5,7 @@ from rq.registry import (
     clean_registries,
 )
 
-from utils.date_utils import DateUtils
+from modules.utils.date_utils import DateUtils
 
 
 logger = logging.getLogger(__name__)

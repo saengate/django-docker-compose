@@ -4,7 +4,7 @@ from django.urls import (
 )
 from rest_framework import routers
 
-from apps_my_module import views
+from modules.apps_my_module import views
 
 
 # Routers provide a way of automatically determining the URL conf.
