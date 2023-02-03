@@ -1,4 +1,3 @@
-import logging
 # import django_heroku
 # import sentry_sdk
 
@@ -7,8 +6,8 @@ from os import getenv
 # from sentry_sdk.integrations.django import DjangoIntegration
 # from sentry_sdk.integrations.logging import LoggingIntegration
 
-from utils.color_logging import formatter
-from utils.date_utils import DateUtils
+from modules.utils.color_logging import formatter
+from modules.utils.date_utils import DateUtils
 
 
 ENVIRONMENT = 'qa'
@@ -48,11 +47,11 @@ CORS_ALLOWED_ORIGIN_REGEXES = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': getenv('DATABASE_HOST'),
-        'PORT': getenv('DATABASE_PORT', '5432'),
-        'NAME': getenv('DATABASE_NAME'),
-        'USER': getenv('DATABASE_USER'),
-        'PASSWORD': getenv('DATABASE_PASSWORD'),
+        'HOST': get_secret('DATABASE_HOST'),
+        'PORT': get_secret('DATABASE_PORT', '5432'),
+        'NAME': get_secret('DATABASE_NAME'),
+        'USER': get_secret('DATABASE_USER'),
+        'PASSWORD': get_secret('DATABASE_PASSWORD'),
     },
 }
 
