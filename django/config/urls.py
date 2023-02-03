@@ -25,8 +25,11 @@ from django.conf import settings
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
-    path('', include('users.urls', namespace='users')),
-    path('api/v1/', include('apps_my_module.urls', namespace='apps_my_module')),
+    path('', include('modules.users.urls', namespace='users')),
+    path('api/v1/', include(
+        'modules.apps_my_module.urls',
+        namespace='apps_my_module',
+    )),
     path('django-rq/', include('django_rq.urls')),
 ]
 
