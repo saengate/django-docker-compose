@@ -5,7 +5,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-from apps_my_module.serializers import CustomSerializer
+from modules.apps_my_module.serializers import CustomSerializer
 
 
 class CustomViews(GenericViewSet):
