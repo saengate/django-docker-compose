@@ -5,7 +5,7 @@ import sys
 import json
 
 
-dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
 environment = "environment.json"
 abs_environment_path = os.path.join(dir, environment)
 
