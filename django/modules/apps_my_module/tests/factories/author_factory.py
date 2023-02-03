@@ -1,4 +1,4 @@
-from apps_my_module.models import Author
+from modules.apps_my_module.models import Author
 
 
 class AuthorFactory:

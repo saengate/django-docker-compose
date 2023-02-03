@@ -1,4 +1,6 @@
-from apps_my_module.tests.views.view_base_test_case import ViewBaseTestCase
+from modules.apps_my_module.tests.views.view_base_test_case import (
+    ViewBaseTestCase,
+)
 
 
 class TestBlogView(ViewBaseTestCase):

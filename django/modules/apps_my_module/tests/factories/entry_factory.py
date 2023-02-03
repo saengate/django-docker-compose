@@ -1,8 +1,8 @@
 from freezegun import freeze_time
 
-from apps_my_module.models import Entry
-from apps_my_module.tests.factories import AuthorFactory, BlogFactory
-from utils.date_utils import DateUtils
+from modules.apps_my_module.models import Entry
+from modules.apps_my_module.tests.factories import AuthorFactory, BlogFactory
+from modules.utils.date_utils import DateUtils
 
 
 class EntryFactory:

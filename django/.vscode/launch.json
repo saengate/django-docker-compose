@@ -124,7 +124,7 @@
                 "test",
                 "--no-input",
                 "-k",
-                "TestCustomView"
+                "EntryModel"
             ],
             "django": true
         }

@@ -4,7 +4,7 @@ from rest_framework.test import (
 )
 from rest_framework_jwt.settings import api_settings
 
-from modules.apps_my_module.tests.factories import (
+from modules.users.tests.factories import (
     UserFactory,
 )
 

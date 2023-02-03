@@ -1,4 +1,4 @@
-from apps_my_module.models import Blog
+from modules.apps_my_module.models import Blog
 
 
 class BlogFactory:
