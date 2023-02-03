@@ -2,7 +2,7 @@ import pygments
 import os
 
 from .base import *  # NOQA
-from utils.color_logging import formatter
+from modules.utils.color_logging import formatter
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
