@@ -13,6 +13,7 @@ SECRET_KEY = get_secret('SECRET_KEY')
 
 INSTALLED_APPS = INSTALLED_APPS + [  # NOQA
     'modules.users',
+    'modules.core',
     'modules.apps_my_module',
 ]
 
@@ -24,7 +25,7 @@ JWT_AUTH = {
     'JWT_DECODE_HANDLER':
         'rest_framework_jwt.utils.jwt_decode_token',
     'JWT_RESPONSE_PAYLOAD_HANDLER':
-        'users.serializers.jwt_user_login_serializer',
+        'modules.users.serializers.jwt_user_login_serializer',
     'JWT_EXPIRATION_DELTA': timedelta(days=1),
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=1),
     'JWT_ALLOW_REFRESH': True,
@@ -45,7 +46,7 @@ DELAY_SECS_BETWEEN_TASK = 1
 DEFAULT_FILE_STORAGE = 'utils.custom_storage.CustomStorage'
 
 AUTHENTICATION_BACKENDS = [
-    'users.auth.AuthenticateBackend',
+    'modules.users.auth.AuthenticateBackend',
 ]
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':

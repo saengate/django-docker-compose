@@ -205,20 +205,24 @@ REDIS_SSL = os.getenv('REDIS_SSL', False)
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': REDIS_URL,
-        'TIMEOUT': 360,
+        'LOCATION': [REDIS_URL],
+        'TIMEOUT': 60,
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
             'MAX_ENTRIES': 5000,
             'CONNECTION_POOL_KWARGS':
                 {'ssl_cert_reqs': None} if REDIS_SSL else {},
         },
+        'KEY_PREFIX': 'modules',  # will be myproyec
     },
 }
 
 REDIS_CACHE = {
     'USE_REDIS_CACHE': 'default',
 }
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
 
 RQ_QUEUES = {
     'default': REDIS_CACHE,
