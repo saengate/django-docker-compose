@@ -1,11 +1,7 @@
 from unittest import TestCase
 from rest_framework.serializers import ValidationError
 
-<<<<<<< HEAD:django/apps_my_module/tests/serializers/validators/test_rut_validator.py
-from users.serializers.validators import RutValidator
-=======
 from modules.users.serializers.validators import RutValidator
->>>>>>> class5/create-serializers-related-models:django/modules/users/tests/serializers/validators/test_rut_validator.py
 
 
 class TestRutValidator(TestCase):

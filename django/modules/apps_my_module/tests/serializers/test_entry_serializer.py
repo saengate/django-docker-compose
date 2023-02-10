@@ -2,16 +2,16 @@
 from django.test import TestCase
 from freezegun import freeze_time
 
-from apps_my_module.serializers import (
+from modules.apps_my_module.serializers import (
     EntrySerializer,
     ReadEntrySerializer,
 )
-from apps_my_module.tests.factories import (
+from modules.apps_my_module.tests.factories import (
     BlogFactory,
     AuthorFactory,
 )
 
-from utils.date_utils import DateUtils
+from modules.utils.date_utils import DateUtils
 
 
 class TestEntrySerializer(TestCase):

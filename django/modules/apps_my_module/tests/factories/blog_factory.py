@@ -1,6 +1,6 @@
 from modules.apps_my_module.models import Blog
 
-from apps_my_module.tests.factories.comment_factory import CommentFactory
+from modules.apps_my_module.tests.factories.comment_factory import CommentFactory
 
 
 class BlogFactory:

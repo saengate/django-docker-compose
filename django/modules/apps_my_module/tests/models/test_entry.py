@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.db.models import Prefetch
 
 from modules.apps_my_module.tests.factories import EntryFactory
 from modules.apps_my_module.models import (
@@ -10,7 +9,7 @@ from modules.apps_my_module.models import (
 )
 
 
-class EntryModel(TestCase):
+class TestEntryModel(TestCase):
     def setUp(self) -> None:
         return super().setUp()
 
@@ -133,8 +132,6 @@ class EntryModel(TestCase):
 
         entries = Entry.objects.select_related(
             'blog__comments',
-        ).filter(
-            blog__comments__id=pk,
         )
 
         with self.assertNumQueries(1):
