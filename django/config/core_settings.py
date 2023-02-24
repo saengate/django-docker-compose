@@ -71,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'modules.apps_my_module.middleware.SimpleMiddleware',
 ]
 
 ROOT_URLCONF = f'{BASE_FOLDER_CONFIGS}.urls'
