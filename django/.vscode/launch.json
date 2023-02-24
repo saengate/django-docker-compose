@@ -124,7 +124,7 @@
                 "test",
                 "--no-input",
                 "-k",
-                "TestName"
+                "EntryModel"
             ],
             "django": true
         }
